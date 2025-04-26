@@ -9,6 +9,11 @@ TagManager:
   - Ceiling
   - Stairs
   - StairsHelper
+  - Audio
+  - healthBar
+  - Enemy
+  - ball
+  - HealthPosion
   layers:
   - Default
   - TransparentFX
