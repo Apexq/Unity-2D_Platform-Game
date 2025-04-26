@@ -1,0 +1,4 @@
+repository "NoPor 2025-04-25_18-05-20/NoPor@18967982975290@cloud"
+  path "/"
+    br "/main"
+    co "/main"
