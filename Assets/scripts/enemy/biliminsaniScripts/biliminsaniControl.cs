@@ -6,44 +6,63 @@ public class biliminsaniControl : MonoBehaviour
 {
     public GameObject tupPrefab; // Assign your 'tup' prefab in the inspector
     public Transform throwPoint; // Where the bottle will be thrown from
+    public float Range = 20f;
     public float throwForce = 7f;
     public float throwAngle = 45f; // Angle for the throw
     public float throwInterval = 2f; // Interval between throws in seconds
     public bool isEntered = false;
     private Collider2D other; // Store the collider reference
     private bool canThrow = true; // Flag to control throwing
+    private GameObject Player;
+    private void Start()
+    {
+        Player = GameObject.FindWithTag("Player");
+    }
 
     void Update()
+    {
+        distance();
+        startAttack();
+    }
+   
+    private void distance()
+    {
+        float distance = Vector2.Distance(this.gameObject.transform.position, Player.transform.position);
+        if (distance < Range)
+        {
+            isEntered = true;
+        }
+        else
+        {
+            isEntered = false; // Reset isEntered when out of range
+        }
+    }
+
+    private void startAttack()
     {
         if (isEntered)
         {
             if (canThrow)
             {
+                // Rotate biliminsani to face the player
+                Vector3 direction = Player.transform.position - transform.position;
+                if (direction.x > 0)
+                {
+                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                }
+
                 StartCoroutine(gecikmeliTupAtma());
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isEntered = true;
-            this.other = other; // Store the collider reference
-        }
-
-
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-         if (other.CompareTag("Player"))
-    {
-        isEntered = false;
-    }
-    }
     private IEnumerator gecikmeliTupAtma()
     {
         canThrow = false;
-        ThrowTup(other.transform); // Use the stored collider reference
+        ThrowTup(Player.transform); // Use the stored collider reference
         yield return new WaitForSeconds(3f); // Wait for the specified interval
         canThrow = true;
 

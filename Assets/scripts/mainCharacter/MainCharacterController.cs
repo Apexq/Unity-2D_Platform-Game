@@ -28,17 +28,20 @@ public class MainCharacterController : MonoBehaviour
     public float ladderMoveVectorMagnitude = 1f;
     private Vector2 ladderMoveVector2;
 
-    [Header("Dash sattings")]
+    [Header("Dash Settings")]
     public float dashInputX = 1;
     public float dashVectorMagnitude = 1;
     private Vector2 dashVector2;
     public float dashDurantion = 0.1f;
     private float dashTimer = 0;
+    public float dashCooldown = 1f; // Cooldown süresi
+    private float dashCooldownTimer = 0; // Cooldown zamanlayıcısı
 
     private Rigidbody2D playerRigidBody2D;
     private SpriteRenderer playerSpriteRenderer;
     private GameObject StairsHelper;
     private Animator playerAnimator;
+    private TrailRenderer trailRenderer; // Trail Renderer reference
 
     private bool isOnGround = false;
     private bool isJumping = false;
@@ -53,6 +56,11 @@ public class MainCharacterController : MonoBehaviour
         StairsHelper = GameObject.FindWithTag("StairsHelper");
         playerAnimator = this.gameObject.GetComponent<Animator>();
         playerRigidBody2D.gravityScale = 20f;
+        trailRenderer = this.gameObject.GetComponentInChildren<TrailRenderer>(); // Assuming the Trail Renderer is a child of the character
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = false; // Ensure it's disabled initially
+        }
     }
 
     private void Update()
@@ -62,6 +70,7 @@ public class MainCharacterController : MonoBehaviour
         Jump();
         HandleWallClingTimer();
         LadderMovement();
+        DashCooldownTimer(); // Cooldown zamanlayıcısını güncelle
         dashMovement();
         DashTimer();
     }
@@ -133,9 +142,16 @@ public class MainCharacterController : MonoBehaviour
 
     private void dashMovement()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && dashCooldownTimer <= 0) // Cooldown kontrolü
         {
             isDashing = true;
+            dashCooldownTimer = dashCooldown; // Cooldown zamanlayıcısını başlat
+
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = true; // Enable Trail Renderer when dashing starts
+            }
+
             float x = dashInputX * dashVectorMagnitude;
 
             if (playerRigidBody2D.velocity.x < 0)
@@ -162,9 +178,23 @@ public class MainCharacterController : MonoBehaviour
                 isDashing = false;
                 dashTimer = 0;
                 playerRigidBody2D.velocity = Vector2.zero;
+
+                if (trailRenderer != null)
+                {
+                    trailRenderer.enabled = false; // Disable Trail Renderer when dashing ends
+                }
             }
         }
     }
+
+    private void DashCooldownTimer()
+    {
+        if (dashCooldownTimer > 0)
+        {
+            dashCooldownTimer -= Time.deltaTime; // Cooldown zamanlayıcısını azalt
+        }
+    }
+
     private void HandleJumpTimer()
     {
         if (isJumping)
@@ -174,6 +204,8 @@ public class MainCharacterController : MonoBehaviour
             if (jumpDuration < jumpTimer || Input.GetKeyUp(KeyCode.Space))
             {
                 playerRigidBody2D.gravityScale = gravityScaleWhileFalling;
+                jumpTimer = 0;
+                isJumping = false;
             }
         }
     }
@@ -204,9 +236,6 @@ public class MainCharacterController : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Ground"))
         {
-            playerRigidBody2D.gravityScale = 1;
-            jumpTimer = 0;
-            isJumping = false;
             isOnGround = true;
         }
 
@@ -220,7 +249,6 @@ public class MainCharacterController : MonoBehaviour
                 playerRigidBody2D.velocity = Vector3.zero;
                 jumpTimer = 0;
                 isOnWall = true;
-                isJumping = false;
             }
         }
     }
