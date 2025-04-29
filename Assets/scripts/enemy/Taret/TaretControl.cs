@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TaretControl : MonoBehaviour
 {
@@ -8,14 +9,40 @@ public class TaretControl : MonoBehaviour
     public Transform firePoint; // The point from where the TaretTopu will be fired
     public float fireRate = 1f; // Fire rate in seconds
     private float nextFireTime = 0f; // Time to track the next fire
+    private GameObject player;
+    private Animator Taretanimator;
+    private float distance;
+    public float range = 20f;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+        Taretanimator = this.gameObject.GetComponent<Animator>();
+    }
 
     void Update()
     {
-        if (Time.time >= nextFireTime)
+        Distance();
+
+        if (distance < range)
         {
-            Fire();
-            nextFireTime = Time.time + fireRate;
+            Taretanimator.SetBool("isWake", true);
+            if (Time.time >= nextFireTime)
+            {
+                Taretanimator.SetTrigger("isShoot");
+                Fire();
+                nextFireTime = Time.time + fireRate;
+            }
         }
+        else
+        {
+            Taretanimator.SetBool("isWake", false);
+        }
+    }
+
+    private void Distance()
+    {
+        distance = Vector2.Distance(this.gameObject.transform.position, player.transform.position);
     }
 
     void Fire()

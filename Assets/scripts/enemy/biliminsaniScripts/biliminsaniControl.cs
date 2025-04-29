@@ -14,9 +14,11 @@ public class biliminsaniControl : MonoBehaviour
     private Collider2D other; // Store the collider reference
     private bool canThrow = true; // Flag to control throwing
     private GameObject Player;
+    private Animator animator;
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
+        animator = this.gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -71,6 +73,7 @@ public class biliminsaniControl : MonoBehaviour
 
     void ThrowTup(Transform target)
     {
+        animator.SetTrigger("isAttacking");
         if (tupPrefab != null && throwPoint != null)
         {
             GameObject tup = Instantiate(tupPrefab, throwPoint.position, Quaternion.identity);

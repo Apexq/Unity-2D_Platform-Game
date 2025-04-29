@@ -133,6 +133,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &2554650336827893047
 Animator:
   serializedVersion: 5
@@ -313,6 +325,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1962959123253081178}
         m_TargetAssemblyTypeName: pauseMenu, Assembly-CSharp
         m_MethodName: pauseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -520,7 +544,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5776576902927166851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &5288776646454632908
 Animator:
   serializedVersion: 5
@@ -764,7 +800,7 @@ GameObject:
   - component: {fileID: 6591145484395252730}
   - component: {fileID: 2890777232772963530}
   m_Layer: 5
-  m_Name: HomeButton
+  m_Name: RestarttButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,7 +853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a5cea6dcb76de048b918fd20f4e4cb8, type: 3}
+  m_Sprite: {fileID: -1748454110, guid: 168e9f6dcd10b1648907b0a2ffeeae0c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -873,7 +909,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1962959123253081178}
         m_TargetAssemblyTypeName: pauseMenu, Assembly-CSharp
-        m_MethodName: mainMenuButton
+        m_MethodName: restartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2308848128875304550, guid: ba1619254da39404d99e3324db9204a6, type: 3}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -894,7 +942,7 @@ GameObject:
   - component: {fileID: 7824801111078598613}
   - component: {fileID: 7102796358727104548}
   m_Layer: 5
-  m_Name: Master Slider (2)
+  m_Name: Sfx Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1098,6 +1146,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1962959123253081178}
         m_TargetAssemblyTypeName: pauseMenu, Assembly-CSharp
         m_MethodName: restartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1423,6 +1483,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6701475558867392723}
   - component: {fileID: 1962959123253081178}
+  - component: {fileID: 4548254392029829391}
+  - component: {fileID: 2141350611420326913}
   m_Layer: 5
   m_Name: MenuPrefab
   m_TagString: Untagged
@@ -1468,6 +1530,36 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 7810949033591130022}
   settingsMenuUI: {fileID: 6993659066240015757}
   _pauseButton: {fileID: 874191413365117693}
+--- !u!114 &4548254392029829391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2710734496902232890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d40ef5b9cac844d98c31f29b7890a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: 1db6330e9598b894ea37b84ae397a553, type: 2}
+  masterSlider: {fileID: 6971862652924300294}
+  musicSlider: {fileID: 6078598364493276071}
+  sfxSlider: {fileID: 7102796358727104548}
+--- !u!114 &2141350611420326913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2710734496902232890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664e4828a3cfcaf4d9de3c48eb8f9c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathmenu: {fileID: 3182424531444161038}
+  pauseButton: {fileID: 874191413365117693}
 --- !u!1 &2820721523441543465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2235,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &8664482573349610308
 Animator:
   serializedVersion: 5
@@ -2288,6 +2392,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1962959123253081178}
         m_TargetAssemblyTypeName: pauseMenu, Assembly-CSharp
         m_MethodName: resumeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2595,6 +2711,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1962959123253081178}
         m_TargetAssemblyTypeName: pauseMenu, Assembly-CSharp
         m_MethodName: mainMenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManagerMainMenu, Assembly-CSharp
+        m_MethodName: playButtonTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3318,7 +3446,7 @@ GameObject:
   - component: {fileID: 1026634511796383}
   - component: {fileID: 6078598364493276071}
   m_Layer: 5
-  m_Name: Master Slider (1)
+  m_Name: 'Music Slider '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

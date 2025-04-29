@@ -13,6 +13,7 @@ public class MainCharacter : MonoBehaviour
     private float bulletTimeCounter = 0;
     public float bulletTime = 0.2f;
     public float offset = 0;
+    public bool hasVacaine = false;
 
     private Animator PlayerAnimator;
 
@@ -83,8 +84,14 @@ public class MainCharacter : MonoBehaviour
                 }
                 else
                 {
-                    // Normal düşman → hasar ver
-                    enemy.GetComponent<healthControl>().takeDamege(damage);
+                    if (enemy.tag.Equals("Enemy"))
+                    {
+                        enemy.GetComponent<healthControl>().takeDamege(damage);
+                    } 
+                    else if(enemy.tag.Equals("Enemy(Animals)"))
+                    {
+                        enemy.GetComponent<healthControl>().takeDamegeAnimals(damage, hasVacaine);
+                    }
                 }
             }
         }
@@ -106,6 +113,16 @@ public class MainCharacter : MonoBehaviour
         if (collision.gameObject.tag.Equals("Enemy"))
         {
            enemy = collision.gameObject;
+        } 
+        else if (collision.gameObject.tag.Equals("Enemy(Animals)"))
+        {
+            enemy = collision.gameObject;
+        }
+
+        if (collision.gameObject.tag.Equals("Asi"))
+        {
+            hasVacaine = true;
+            Destroy(collision.gameObject);
         }
     }
 

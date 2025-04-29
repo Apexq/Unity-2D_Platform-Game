@@ -5,7 +5,7 @@ using UnityEngine;
 public class healthControl : MonoBehaviour
 {
     [Header("health system")]
-    private float health;
+    public float health;
     private float perCentForHealth = 1;
     public float maxhealth;
     public GameObject healthBar;
@@ -40,11 +40,6 @@ public class healthControl : MonoBehaviour
             damageEffect();
         }
         staticHealthBar(this.gameObject.GetComponent<Transform>());
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            takeDamege(10);
-        }
     }
 
     public void takeDamege(float damage)
@@ -60,6 +55,25 @@ public class healthControl : MonoBehaviour
         if (health <= 0)
         {
             getDeath();
+        }
+    }
+
+    public void takeDamegeAnimals(float damage, bool asivarmi)
+    {
+        if (asivarmi)
+        {
+            healthBar.SetActive(true);
+
+            health = health - damage;
+
+            refreshHealtBar();
+
+            isDamage = true;
+
+            if (health <= 0)
+            {
+                getDeath();
+            }
         }
     }
 
@@ -95,7 +109,7 @@ public class healthControl : MonoBehaviour
 
     private void staticHealthBar(Transform GameObject_Transform)
     {
-        if (GameObject_Transform.rotation.eulerAngles.y == 180)
+        if (GameObject_Transform.rotation.eulerAngles.y == 180 || GameObject_Transform.localScale.x < 0)
         {
             healthBar.transform.localScale = new Vector3(healthBarLocalScale_x_left, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
         }

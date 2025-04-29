@@ -14,6 +14,9 @@ TagManager:
   - Enemy
   - ball
   - HealthPosion
+  - shield
+  - Asi
+  - Enemy(Animals)
   layers:
   - Default
   - TransparentFX
@@ -21,10 +24,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Wall
+  - Enemy
+  - Animals
   - 
   - 
   - 

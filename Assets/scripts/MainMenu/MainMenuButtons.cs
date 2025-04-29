@@ -22,7 +22,7 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void OnStartButtonPressed()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("lvl1");
         audioManager.playButtonTouch();
     }
 

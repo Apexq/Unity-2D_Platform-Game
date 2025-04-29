@@ -46,13 +46,13 @@ public class pauseMenu : MonoBehaviour
     public void restartButton()
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        sceneController.instance.RestartLevel();
     }
 
     public void mainMenuButton()
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        sceneController.instance.LoadMainMenu();
     }
 
 

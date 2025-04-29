@@ -12,26 +12,37 @@ public class AudioManagerMainMenu : MonoBehaviour
     public AudioClip mainMenuMusic;
     public AudioClip buttonClickSound;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
     private void Start()
     {
-        musicSource.clip = mainMenuMusic;
-        musicSource.Play();
+        // AudioSource bileþenlerini kontrol et ve devre dýþýysa aktif et
+        if (musicSource != null && !musicSource.enabled)
+        {
+            musicSource.enabled = true;
+        }
+
+        if (sfxSource != null && !sfxSource.enabled)
+        {
+            sfxSource.enabled = true;
+        }
+
+        // Müzik çalmaya baþla
+        if (musicSource != null)
+        {
+            musicSource.clip = mainMenuMusic;
+            musicSource.Play();
+        }
     }
+
     public void playSfx(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip);
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(clip);
+        }
     }
 
     public void playButtonTouch()
     {
         playSfx(buttonClickSound);
     }
-
-
-
-
 }

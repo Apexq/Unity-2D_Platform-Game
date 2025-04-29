@@ -56,6 +56,16 @@ public class BallDefualtBehavior : MonoBehaviour
                 }
                 Destroy(this.gameObject);
             }
+
+            if (collision.gameObject.tag.Equals("Enemy(Animals)")) 
+            {
+                healthControl health = collision.gameObject.GetComponent<healthControl>();
+                if (health != null)
+                {
+                    health.takeDamegeAnimals(damage, GameObject.FindWithTag("Player").GetComponent<MainCharacter>().hasVacaine);
+                }
+                Destroy(this.gameObject);
+            }
         }
     }
 }
