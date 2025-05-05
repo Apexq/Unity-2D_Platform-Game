@@ -3024,6 +3024,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 57835371730860067, guid: c41ae2f5180651543b66f203afac46a2, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 57835371730860067, guid: c41ae2f5180651543b66f203afac46a2, type: 3}
+      propertyPath: punchRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 57835371730860067, guid: c41ae2f5180651543b66f203afac46a2, type: 3}
+      propertyPath: Enemys.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 2199407618363775896, guid: c41ae2f5180651543b66f203afac46a2, type: 3}
       propertyPath: m_Name
       value: MainCharcter

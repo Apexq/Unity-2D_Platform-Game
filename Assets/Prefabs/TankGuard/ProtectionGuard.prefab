@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 844209431275889231}
   m_Layer: 8
   m_Name: Protection
-  m_TagString: Untagged
+  m_TagString: Protection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.54060626, y: 0.06635475}
+  m_Offset: {x: -0.5032232, y: 0.06635475}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -137,7 +137,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3063674, y: 1.486167}
+  m_Size: {x: 0.38113356, y: 1.486167}
   m_EdgeRadius: 0
 --- !u!1 &8649323044376638382
 GameObject:
@@ -354,6 +354,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   canDash: 1
+  damage: 10
 --- !u!114 &2988128883143303074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +386,7 @@ MonoBehaviour:
   healthBar_slider: {fileID: 1902584325261213562}
   waiting_period: 0.2
   cameraDamagePosition: 0.1
+  damageForce: {x: 0, y: 0}
 --- !u!1001 &7854287718227610591
 PrefabInstance:
   m_ObjectHideFlags: 0

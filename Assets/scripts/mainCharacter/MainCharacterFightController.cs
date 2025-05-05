@@ -14,11 +14,11 @@ public class MainCharacter : MonoBehaviour
     public float bulletTime = 0.2f;
     public float offset = 0;
     public bool hasVacaine = false;
+    public LayerMask Enemys;
+    public float punchRadius;
 
     private Animator PlayerAnimator;
-
-    private bool isAttacking = false;
-    private GameObject enemy;
+ 
 
     private void Start()
     {
@@ -27,7 +27,6 @@ public class MainCharacter : MonoBehaviour
     private void Update()
     {
         PunchAttackControl();
-        AttackTimer();
         Shotattack();
     }
 
@@ -35,14 +34,28 @@ public class MainCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            isAttacking = true;
-            PlayerAnimator.SetBool("isAttacking",true);
+           
+            PlayerAnimator.SetTrigger("isAttacking");
+            punch();
+          
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
+    }
+
+    private void punch()
+    {
+        Collider2D[] enemys = Physics2D.OverlapCircleAll(this.gameObject.transform.position + new Vector3(0, offset, 0), punchRadius, Enemys);
+
+        foreach (Collider2D enemy in enemys)
         {
-            isAttacking = false;
-            PlayerAnimator.SetBool("isAttacking", false);
+            if (enemy != null)
+            {
+                if (enemy.gameObject.GetComponent<healthControl>() != null)
+                {
+                    enemy.gameObject.GetComponent<healthControl>().takeDamege(damage);
+                }
+            }
         }
+
     }
 
     private void Shotattack()
@@ -66,37 +79,7 @@ public class MainCharacter : MonoBehaviour
           
         }
     }
-    private void AttackTimer() 
-    {
-        if (isAttacking && enemy != null)
-        {
-            damageTimeCounter += Time.deltaTime;
-
-            if (damageTimeCounter > damageWaitingTime)
-            {
-                damageTimeCounter = 0;
-                // Önce Undamagable mı diye kontrol et
-                Undamagable undamagable = enemy.GetComponent<Undamagable>();
-                if (undamagable != null)
-                {
-                    // Eğer Undamagable ise, hasar vermek yerine Warning göster
-                    FindObjectOfType<AnimalPlantHitWarning>().ShowWarning();
-                }
-                else
-                {
-                    if (enemy.tag.Equals("Enemy"))
-                    {
-                        enemy.GetComponent<healthControl>().takeDamege(damage);
-                    } 
-                    else if(enemy.tag.Equals("Enemy(Animals)"))
-                    {
-                        enemy.GetComponent<healthControl>().takeDamegeAnimals(damage, hasVacaine);
-                    }
-                }
-            }
-        }
-    }
-
+   
     private void shotTimer()
     {
         bulletTimeCounter += Time.deltaTime;
@@ -108,29 +91,19 @@ public class MainCharacter : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.gameObject.transform.position + new Vector3(0, offset, 0), punchRadius);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Enemy"))
-        {
-           enemy = collision.gameObject;
-        } 
-        else if (collision.gameObject.tag.Equals("Enemy(Animals)"))
-        {
-            enemy = collision.gameObject;
-        }
-
+       
         if (collision.gameObject.tag.Equals("Asi"))
         {
             hasVacaine = true;
             Destroy(collision.gameObject);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Enemy"))
-        {
-            enemy = null;
         }
     }
 

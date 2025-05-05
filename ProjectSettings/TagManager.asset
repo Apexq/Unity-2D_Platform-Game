@@ -17,6 +17,7 @@ TagManager:
   - shield
   - Asi
   - Enemy(Animals)
+  - Protection
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ public class JumperPlant : MonoBehaviour
     [SerializeField]
     LayerMask groundLayer;
     bool isGrounded;
+    public float damage = 20;
 
     void Start()
     {
@@ -58,5 +59,13 @@ public class JumperPlant : MonoBehaviour
         rb2d.AddForce(randJumpForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(2f);
         rb2d.velocity = Vector2.zero;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            collision.gameObject.GetComponent<healthControl>().takeDamege(damage);
+        }
     }
 }

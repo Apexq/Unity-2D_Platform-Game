@@ -12,6 +12,7 @@ public class healthControl : MonoBehaviour
     public GameObject leftPointer;
     public GameObject healthBar_slider;
 
+
     [Header("effect system")]
     public float waiting_period = 0.2f;
     public float cameraDamagePosition = 0.1f;
@@ -19,12 +20,27 @@ public class healthControl : MonoBehaviour
     private bool isDamage = false;
     private float healthBarLocalScale_x_right;
     private float healthBarLocalScale_x_left;
+    public Vector2 damageForce;
+    private float damageForcexNegative;
+    private float damageForcexPositive;
 
+    private deathScript deathScript;
     private GameObject MainCamera;
+    private GameObject Player;
+
+    private void Awake()
+    {
+        deathScript = FindAnyObjectByType<deathScript>();    
+    }
 
     private void Start()
     {
+        Player = GameObject.FindWithTag("Player");
+
         MainCamera = GameObject.FindWithTag("MainCamera");
+
+        damageForcexNegative = -damageForce.x;
+        damageForcexPositive = damageForce.x;
 
         healthBar.SetActive(false);
 
@@ -50,6 +66,8 @@ public class healthControl : MonoBehaviour
 
         refreshHealtBar();
 
+        damageShift();
+
         isDamage = true;
 
         if (health <= 0)
@@ -58,15 +76,17 @@ public class healthControl : MonoBehaviour
         }
     }
 
-    public void takeDamegeAnimals(float damage, bool asivarmi)
+    public void takeDamegeAnimals(float damage, bool asiVarmi)
     {
-        if (asivarmi)
+        if (asiVarmi)
         {
             healthBar.SetActive(true);
 
             health = health - damage;
 
             refreshHealtBar();
+
+            damageShift();
 
             isDamage = true;
 
@@ -99,9 +119,14 @@ public class healthControl : MonoBehaviour
 
     public void getDeath()
     {
-        if (this.gameObject.tag.Equals("Enemy"))
+        if (this.gameObject.tag.Equals("Enemy") || this.gameObject.tag.Equals("Enemy(Animals)"))
         {
-            Instantiate(MainCamera.GetComponent<enemyDeathBehavior>().DropLoot(), this.gameObject.transform.position, this.gameObject.transform.rotation);
+            Instantiate(MainCamera.GetComponent<enemyDeathBehavior>().DropLoot(), this.gameObject.transform.position + new Vector3(0, 0.5f, 0), this.gameObject.transform.rotation);
+        }
+
+        if(this.gameObject.tag.Equals("Player"))
+        {
+            deathScript.ShowDeathMenu();
         }
 
         Destroy(this.gameObject.gameObject);
@@ -130,6 +155,23 @@ public class healthControl : MonoBehaviour
         {
             isDamage = false;
             timeCounter = 0;
+        }
+    }
+
+    private void damageShift()
+    {
+
+        if (Player.transform.rotation.y == 180)
+        {
+            damageForce.x = damageForcexPositive;
+        } else
+        {
+            damageForce.x = damageForcexNegative;
+        }
+
+        if (this.gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().AddForce(damageForce, ForceMode2D.Impulse);
         }
     }
 

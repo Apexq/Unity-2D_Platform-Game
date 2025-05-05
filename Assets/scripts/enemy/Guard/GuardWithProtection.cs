@@ -23,6 +23,7 @@ public class GuardWithProtection : MonoBehaviour
     LayerMask wallLayer;
     public bool canDash = true;
     bool edgeHit;
+    public float damage = 10;
     
 
     void Start()
@@ -108,12 +109,13 @@ public class GuardWithProtection : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerDetected = true;
             player = collision.transform;
+            collision.gameObject.GetComponent<healthControl>().takeDamege(damage);
         }
     }
 }
