@@ -35,6 +35,21 @@ The project is organized as follows:
 3. Ensure all required Unity packages are installed (check `Packages/manifest.json`).
 4. Press the Play button in the Unity Editor to start the game.
 
+## Screenshots
+
+Here are some screenshots from the game:
+
+![Screenshot 1](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20152938.png)
+![Screenshot 2](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153126.png)
+![Screenshot 3](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153237.png)
+![Screenshot 4](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153306.png)
+![Screenshot 5](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153345.png)
+![Screenshot 6](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153413.png)
+![Screenshot 7](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153500.png)
+![Screenshot 8](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153520.png)
+![Screenshot 9](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153544.png)
+![Screenshot 10](gamescreenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-12%20153622.png)
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
